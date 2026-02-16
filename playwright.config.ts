@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+const authFile = "playwright/.auth/standard_user.json";
 
 /**
  * Read environment variables from file.
@@ -36,8 +37,20 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "chromium",
+      testIgnore: [/.*\.setup\.ts/, /cart\.spec\.ts/],
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "chromium-auth",
+      dependencies: ["setup"],
+      testMatch: /cart\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], storageState: authFile },
     },
 
     // {

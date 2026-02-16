@@ -22,18 +22,4 @@ test("Shows error for wrong password", async ({ loginPage }) => {
   );
 });
 
-test("Add product to cart", async ({ loginPage, inventoryPage }) => {
-  await loginPage.login(users.valid);
-  await inventoryPage.assertOnPage();
-  await inventoryPage.addToCart("Sauce Labs Fleece Jacket");
-  await inventoryPage.expectCartCount(1);
-});
 
-test("Remove product from cart", async ({ loginPage, inventoryPage }) => {
-  await loginPage.login(users.valid);
-  await inventoryPage.assertOnPage();
-  await inventoryPage.addToCart("Sauce Labs Onesie");
-  await inventoryPage.expectCartCount(1);
-  await inventoryPage.removeFromCart("Sauce Labs Onesie");
-  await inventoryPage.expectCartCount(0);
-});
