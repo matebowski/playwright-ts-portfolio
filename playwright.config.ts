@@ -43,13 +43,13 @@ export default defineConfig({
     },
     {
       name: "chromium",
-      testIgnore: [/.*\.setup\.ts/, /cart\.spec\.ts/],
+      testIgnore: [/.*\.setup\.ts/, /cart\.spec\.ts/, "tests/authenticated/**"],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "chromium-auth",
       dependencies: ["setup"],
-      testMatch: /cart\.spec\.ts/,
+      testMatch: /tests\/authenticated\/.*\.spec\.ts/,
       use: { ...devices["Desktop Chrome"], storageState: authFile },
     },
 

@@ -1,10 +1,14 @@
 import { test as base, expect } from "@playwright/test";
+import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
 import { InventoryPage } from "../pages/inventoryPage";
+import { CheckoutPage } from "../pages/CheckoutPage";
 
 type AppFixtures = {
   loginPage: LoginPage;
   inventoryPage: InventoryPage;
+  cartPage: CartPage;
+  checkoutPage: CheckoutPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -16,6 +20,16 @@ export const test = base.extend<AppFixtures>({
   inventoryPage: async ({ page }, use) => {
     const inventoryPage = new InventoryPage(page);
     await use(inventoryPage);
+  },
+
+  cartPage: async ({ page }, use) => {
+    const cartPage = new CartPage(page);
+    await use(cartPage);
+  },
+
+  checkoutPage: async ({ page }, use) => {
+    const checkoutPage = new CheckoutPage(page);
+    await use(checkoutPage);
   },
 });
 

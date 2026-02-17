@@ -49,4 +49,8 @@ export class InventoryPage {
     await expect(this.shoppingCartBadge).toHaveCount(1);
     await expect(this.shoppingCartBadge).toHaveText(String(count));
   }
+
+  async clickShoppingCartBadge() {
+    await this.shoppingCartBadge.click();
+  }
 }
