@@ -1,4 +1,4 @@
-import type { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 
 export class CheckoutPage {
   private readonly page: Page;
@@ -8,6 +8,7 @@ export class CheckoutPage {
   readonly continueButton: Locator;
   readonly cancelButton: Locator;
   readonly finishButton: Locator;
+  readonly completeHeader: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -17,6 +18,7 @@ export class CheckoutPage {
     this.continueButton = page.getByTestId("continue");
     this.cancelButton = page.getByTestId("cancel");
     this.finishButton = page.getByTestId("finish");
+    this.completeHeader = page.getByTestId("complete-header");
   }
 
   async fillUserForm(firstName: string, lastName: string, postalCode: string) {
@@ -31,5 +33,10 @@ export class CheckoutPage {
 
   async clickFinishButton() {
     await this.finishButton.click();
+  }
+
+  async assertCheckoutCompleted() {
+    await expect(this.page).toHaveURL("/checkout-complete.html");
+    await expect(this.completeHeader).toHaveText("Thank you for your order!");
   }
 }
