@@ -1,12 +1,15 @@
 import { expect } from "@playwright/test";
 import type { Locator, Page } from "@playwright/test";
 
+type SortOption = "az" | "za" | "lohi" | "hilo";
+
 export class InventoryPage {
   private readonly page: Page;
   readonly title: Locator;
   readonly items: Locator;
   readonly itemName: Locator;
   readonly shoppingCartBadge: Locator;
+  readonly sortDropdown: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,6 +17,7 @@ export class InventoryPage {
     this.items = page.getByTestId("inventory-item");
     this.itemName = page.getByTestId("inventory-item-name");
     this.shoppingCartBadge = page.getByTestId("shopping-cart-badge");
+    this.sortDropdown = page.getByTestId("product-sort-container");
   }
 
   async assertOnPage() {
@@ -52,5 +56,10 @@ export class InventoryPage {
 
   async clickShoppingCartBadge() {
     await this.shoppingCartBadge.click();
+  }
+
+  async sortBy(option: SortOption) {
+    await this.sortDropdown.selectOption(option);
+    await expect(this.sortDropdown).toHaveValue(option);
   }
 }

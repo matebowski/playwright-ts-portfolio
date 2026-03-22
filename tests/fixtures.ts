@@ -1,7 +1,7 @@
 import { test as base, expect } from "@playwright/test";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
-import { InventoryPage } from "../pages/inventoryPage";
+import { InventoryPage } from "../pages/InventoryPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
 
 type AppFixtures = {
