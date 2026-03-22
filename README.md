@@ -1,32 +1,31 @@
 # Playwright + TypeScript Portfolio
 
-Test automation portfolio project built with Playwright and TypeScript.
+UI test automation portfolio project built with Playwright and TypeScript.
 
-## Project goal
-
-This repository showcases my approach to UI test automation with a focus on:
-
-- Playwright + TypeScript
-- Page Object Model
-- custom fixtures
-- authenticated test setup with storage state
-- maintainable test structure
-- GitHub Actions CI
-
-## Tech stack
+## Stack
 
 - Playwright
 - TypeScript
 - Node.js
 - GitHub Actions
 
-## Project structure
+## What is included
 
-```text
-.
-├── .github/workflows
-├── pages
-├── tests
-├── types
-├── playwright.config.ts
-├── package.json
+- Page Object Model
+- custom fixtures
+- authenticated tests with storage state
+- cart and checkout test coverage
+- GitHub Actions CI workflow
+
+## Run locally
+
+    npm ci
+    npx playwright install --with-deps
+    npm test
+
+## Useful commands
+
+    npm run test:ui
+    npm run test:headed
+    npm run report
+    npm run format
